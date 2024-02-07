@@ -12,7 +12,12 @@ import {
 } from '@chakra-ui/react';
 
 import Logo from '../../assets/Logo.png';
+import { useContext } from 'react';
+import { AuthContext } from '../AuthProvider';
 export default function Home() {
+	// Access currentUser from AuthContext
+	const { currentUser } = useContext(AuthContext);
+	console.log(currentUser);
 	return (
 		<>
 			<Container maxW={'3xl'}>
@@ -42,7 +47,7 @@ export default function Home() {
 						make a meaningful impact. Let&apos;s explore the endless
 						possibilities together!
 					</Text>
-
+					<h2>{currentUser?.email} test</h2>
 					<Stack
 						direction={'column'}
 						spacing={3}

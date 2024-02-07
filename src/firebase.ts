@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import {
-	getAuth,
 	createUserWithEmailAndPassword,
+	getAuth,
 	signInWithEmailAndPassword,
 } from 'firebase/auth';
 
@@ -17,28 +17,10 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
-export function signIn(email: string, password: string) {
-	createUserWithEmailAndPassword(auth, email, password)
-		.then((userCredential) => {
-			const user = userCredential.user;
-			console.log('User created successfully:', user);
-		})
-		.catch((error) => {
-			const errorCode = error.code;
-			const errorMessage = error.message;
-			console.error('Error creating user:', errorCode, errorMessage);
-		});
-}
+export const handleLogin = (email: string, password: string) => {
+	return signInWithEmailAndPassword(auth, email, password);
+};
 
-export function logIn(email: string, password: string) {
-	signInWithEmailAndPassword(auth, email, password)
-		.then((userCredential) => {
-			const user = userCredential.user;
-			console.log('User signed in successfully:', user);
-		})
-		.catch((error) => {
-			const errorCode = error.code;
-			const errorMessage = error.message;
-			console.error('Error signing in user:', errorCode, errorMessage);
-		});
-}
+export const handleSignIn = (email: string, password: string) => {
+	return createUserWithEmailAndPassword(auth, email, password);
+};

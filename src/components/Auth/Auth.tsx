@@ -1,6 +1,5 @@
 import { Container, Stack, HStack, Checkbox, Button } from '@chakra-ui/react';
 import { useFormik } from 'formik';
-import { logIn, signIn } from '../../firebase';
 import { authSchema } from '../../utils/yupSchema';
 import { EmailField } from './Fields/EmailField';
 import { PasswordField } from './Fields/PasswordField';
@@ -8,12 +7,47 @@ import { FormBody } from './AuthForm/FormBody';
 import FormButton from './AuthForm/FormButton';
 import { FormHeader } from './AuthForm/FormHeader';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../AuthProvider';
+import { handleLogin, handleSignIn } from '../../firebase';
+import { UserCredential } from 'firebase/auth';
+import { FirebaseError } from 'firebase/app';
 
 interface AuthProps {
 	isLogin: boolean;
 }
+interface input {
+	email: string;
+	password: string;
+}
 
 export const Auth: React.FC<AuthProps> = ({ isLogin }) => {
+	const { currentUser } = useContext(AuthContext);
+
+	const navigate = useNavigate();
+
+	// If the user is already authenticated, redirect to the home page
+	if (currentUser) {
+		navigate('/home');
+	}
+	const loginHanlder = (values: input) => {
+		handleLogin(values.email, values.password)
+			.then((result: UserCredential) => {
+				console.log(result);
+				navigate('/home');
+			})
+			.catch((error: FirebaseError) => console.log(error.message));
+	};
+	const createUserHandler = (values: input) => {
+		handleSignIn(values.email, values.password)
+			.then((result: UserCredential) => {
+				console.log(result);
+				navigate('/');
+			})
+			.catch((error: FirebaseError) => console.log(error.message));
+	};
+
 	const formik = useFormik({
 		initialValues: {
 			email: '',
@@ -22,9 +56,7 @@ export const Auth: React.FC<AuthProps> = ({ isLogin }) => {
 		validationSchema: authSchema,
 		onSubmit: (values) => {
 			{
-				isLogin
-					? logIn(values.email, values.password)
-					: signIn(values.email, values.password);
+				isLogin ? loginHanlder(values) : createUserHandler(values);
 			}
 		},
 	});
