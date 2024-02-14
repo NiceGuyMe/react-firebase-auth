@@ -20,7 +20,6 @@ interface inputProps {
 }
 
 export const Auth: React.FC<AuthProps> = ({ isLogin }) => {
-
 	const navigate = useNavigate();
 
 	const loginHanlder = (values: inputProps) => {
@@ -45,7 +44,7 @@ export const Auth: React.FC<AuthProps> = ({ isLogin }) => {
 		},
 		validationSchema: authSchema,
 		onSubmit: (values) => {
-				isLogin ? loginHanlder(values) : createUserHandler(values);
+			isLogin ? loginHanlder(values) : createUserHandler(values);
 		},
 	});
 

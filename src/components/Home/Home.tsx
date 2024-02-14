@@ -14,75 +14,73 @@ import {
 import Logo from '../../assets/Logo.png';
 export default function Home() {
 	return (
-
-			<Container maxW={'3xl'}>
-				<Stack
-					as={Box}
-					textAlign={'center'}
-					spacing={{ base: 8, md: 14 }}
-					py={{ base: 20, md: 36 }}
-					align="center"
-					justify="center"
+		<Container maxW={'3xl'}>
+			<Stack
+				as={Box}
+				textAlign={'center'}
+				spacing={{ base: 8, md: 14 }}
+				py={{ base: 20, md: 36 }}
+				align="center"
+				justify="center"
+			>
+				<Image src={Logo} alt="My logo" width={20} rounded={50} />
+				<Heading
+					fontWeight={600}
+					fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
+					lineHeight={'110%'}
 				>
-					<Image src={Logo} alt="My logo" width={20} rounded={50} />
-					<Heading
-						fontWeight={600}
-						fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
-						lineHeight={'110%'}
-					>
-						Hello there ! <br />
-						<Text as={'span'} color={'green.400'}>
-							Loica at your service
-						</Text>
-					</Heading>
-					<Text color={'gray.500'}>
-						👋 I&apos;m a developer with a passion for turning ideas into
-						robust, innovative solutions. 💼 Open to new challenges and
-						collaborations, I&apos;m here to bring my skills to the table and
-						make a meaningful impact. Let&apos;s explore the endless
-						possibilities together!
+					Hello there ! <br />
+					<Text as={'span'} color={'green.400'}>
+						Loica at your service
 					</Text>
-					<Stack
-						direction={'column'}
-						spacing={3}
-						align={'center'}
-						alignSelf={'center'}
-						position={'relative'}
+				</Heading>
+				<Text color={'gray.500'}>
+					👋 I&apos;m a developer with a passion for turning ideas into robust,
+					innovative solutions. 💼 Open to new challenges and collaborations,
+					I&apos;m here to bring my skills to the table and make a meaningful
+					impact. Let&apos;s explore the endless possibilities together!
+				</Text>
+				<Stack
+					direction={'column'}
+					spacing={3}
+					align={'center'}
+					alignSelf={'center'}
+					position={'relative'}
+				>
+					<Button
+						colorScheme={'green'}
+						bg={'green.400'}
+						rounded={'full'}
+						px={6}
+						_hover={{
+							bg: 'green.500',
+						}}
 					>
-						<Button
-							colorScheme={'green'}
-							bg={'green.400'}
-							rounded={'full'}
-							px={6}
-							_hover={{
-								bg: 'green.500',
-							}}
+						Contact
+					</Button>
+					<Box>
+						<Icon
+							as={Arrow}
+							color={useColorModeValue('gray.800', 'gray.300')}
+							w={71}
+							position={'absolute'}
+							right={-71}
+							top={'10px'}
+						/>
+						<Text
+							fontSize={'lg'}
+							fontFamily={'Caveat'}
+							position={'absolute'}
+							right={'-125px'}
+							top={'-15px'}
+							transform={'rotate(10deg)'}
 						>
-							Contact
-						</Button>
-						<Box>
-							<Icon
-								as={Arrow}
-								color={useColorModeValue('gray.800', 'gray.300')}
-								w={71}
-								position={'absolute'}
-								right={-71}
-								top={'10px'}
-							/>
-							<Text
-								fontSize={'lg'}
-								fontFamily={'Caveat'}
-								position={'absolute'}
-								right={'-125px'}
-								top={'-15px'}
-								transform={'rotate(10deg)'}
-							>
-								Let build your idea
-							</Text>
-						</Box>
-					</Stack>
+							Let build your idea
+						</Text>
+					</Box>
 				</Stack>
-			</Container>
+			</Stack>
+		</Container>
 	);
 }
 
