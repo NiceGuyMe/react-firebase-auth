@@ -8,41 +8,31 @@ import FormButton from './AuthForm/FormButton';
 import { FormHeader } from './AuthForm/FormHeader';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
-import { AuthContext } from '../AuthProvider';
 import { handleLogin, handleSignIn } from '../../firebase';
-import { UserCredential } from 'firebase/auth';
 import { FirebaseError } from 'firebase/app';
 
 interface AuthProps {
 	isLogin: boolean;
 }
-interface input {
+interface inputProps {
 	email: string;
 	password: string;
 }
 
 export const Auth: React.FC<AuthProps> = ({ isLogin }) => {
-	const { currentUser } = useContext(AuthContext);
 
 	const navigate = useNavigate();
 
-	// If the user is already authenticated, redirect to the home page
-	if (currentUser) {
-		navigate('/home');
-	}
-	const loginHanlder = (values: input) => {
+	const loginHanlder = (values: inputProps) => {
 		handleLogin(values.email, values.password)
-			.then((result: UserCredential) => {
-				console.log(result);
+			.then(() => {
 				navigate('/home');
 			})
 			.catch((error: FirebaseError) => console.log(error.message));
 	};
-	const createUserHandler = (values: input) => {
+	const createUserHandler = (values: inputProps) => {
 		handleSignIn(values.email, values.password)
-			.then((result: UserCredential) => {
-				console.log(result);
+			.then(() => {
 				navigate('/');
 			})
 			.catch((error: FirebaseError) => console.log(error.message));
@@ -55,9 +45,7 @@ export const Auth: React.FC<AuthProps> = ({ isLogin }) => {
 		},
 		validationSchema: authSchema,
 		onSubmit: (values) => {
-			{
 				isLogin ? loginHanlder(values) : createUserHandler(values);
-			}
 		},
 	});
 
