@@ -59,14 +59,14 @@ The project structure follows a common React application structure with addition
 react-firebase-auth/
 │
 ├── src/
+│   ├── assets/
 │   ├── components/
-│   ├── firebase/
-│   ├── pages/
+│   ├── utils/
 │   ├── App.tsx
-│   ├── index.tsx
-│   └── ...
+│   ├── firebase.tsx
+│   └── main.tsx
 │
-├── .eslintrc.js
+├── .eslintrc.json
 ├── .prettierrc
 ├── tsconfig.json
 └── ...
