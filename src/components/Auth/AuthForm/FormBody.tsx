@@ -3,7 +3,7 @@ import { FormHTMLAttributes } from 'react';
 import PropTypes from 'prop-types';
 
 interface FormBodyProps extends FormHTMLAttributes<HTMLFormElement> {
-	// You can add any additional custom props specific to your component
+	
 }
 
 export const FormBody: React.FC<FormBodyProps> = ({

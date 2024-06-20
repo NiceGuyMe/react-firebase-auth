@@ -8,7 +8,7 @@ import FormButton from './AuthForm/FormButton';
 import { FormHeader } from './AuthForm/FormHeader';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-import { handleLogin, handleSignIn } from '../../firebase';
+import { handleLogin, handleSignIn } from '../../utils/firebase';
 import { FirebaseError } from 'firebase/app';
 
 interface AuthProps {

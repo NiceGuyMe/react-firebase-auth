@@ -18,9 +18,13 @@ export const FormHeader: React.FC<FormHeaderProps> = ({ isLogin }) => {
 				) : (
 					<Heading size={{ base: 'xs', md: 'sm' }}>Create an account</Heading>
 				)}
-				{isLogin && (
+				{isLogin ? (
 					<Text color="fg.muted">
-						Don&apos;t have an account? <Link href="#">Sign up</Link>
+						Don&apos;t have an account? <Link href="/signin">Sign up</Link>
+					</Text>
+				) : (
+					<Text color="fg.muted">
+						Already have an account? <Link href="/">Login</Link>
 					</Text>
 				)}
 			</Stack>

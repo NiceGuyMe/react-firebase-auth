@@ -2,8 +2,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './components/Home/Home';
 import Login from './components/Auth/Login/Login';
 import Signin from './components/Auth/Signin/Signin';
-import ProtectedRoute from './components/ProtectedRoute';
-import AuthProvider from './components/AuthProvider';
+import ProtectedRoute from './components/security/ProtectedRoute';
+import AuthProvider from './components/security/AuthProvider';
 
 function App() {
 	return (
