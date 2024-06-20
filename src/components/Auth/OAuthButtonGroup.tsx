@@ -1,12 +1,7 @@
 import { Button, ButtonGroup, VisuallyHidden } from '@chakra-ui/react';
 import { signInWithPopup } from 'firebase/auth';
-import {
-	googleProvider,
-	twitterProvider,
-	githubProvider,
-	auth,
-} from '../../utils/firebase';
-import { GoogleIcon, TwitterIcon, GitHubIcon } from './ProviderIcons';
+import { googleProvider, githubProvider, auth } from '../../utils/firebase';
+import { GoogleIcon, GitHubIcon } from './ProviderIcons';
 import { useNavigate } from 'react-router-dom';
 
 const providers = [
@@ -19,7 +14,7 @@ export const OAuthButtonGroup = () => {
 
 	const handleSignIn = (provider: any) => {
 		signInWithPopup(auth, provider)
-			.then((result: { user: any }) => {
+			.then(() => {
 				navigate('/home');
 			})
 			.catch((error: any) => {

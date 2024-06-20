@@ -2,9 +2,7 @@ import { Box } from '@chakra-ui/react';
 import { FormHTMLAttributes } from 'react';
 import PropTypes from 'prop-types';
 
-interface FormBodyProps extends FormHTMLAttributes<HTMLFormElement> {
-	
-}
+interface FormBodyProps extends FormHTMLAttributes<HTMLFormElement> {}
 
 export const FormBody: React.FC<FormBodyProps> = ({
 	children,
