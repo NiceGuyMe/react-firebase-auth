@@ -1,19 +1,40 @@
 import { Button, ButtonGroup, VisuallyHidden } from '@chakra-ui/react';
-import { GitHubIcon, GoogleIcon, TwitterIcon } from './ProviderIcons';
+import { signInWithPopup } from 'firebase/auth';
+import {
+	googleProvider,
+	twitterProvider,
+	githubProvider,
+	auth,
+} from '../../utils/firebase';
+import { GoogleIcon, TwitterIcon, GitHubIcon } from './ProviderIcons';
+import { useNavigate } from 'react-router-dom';
 
 const providers = [
-	{ name: 'Google', icon: <GoogleIcon /> },
-	{ name: 'Twitter', icon: <TwitterIcon /> },
-	{ name: 'GitHub', icon: <GitHubIcon /> },
+	{ name: 'Google', icon: <GoogleIcon />, provider: googleProvider },
+	{ name: 'GitHub', icon: <GitHubIcon />, provider: githubProvider },
 ];
 
-export const OAuthButtonGroup = () => (
-	<ButtonGroup variant="secondary" spacing="4">
-		{providers.map(({ name, icon }) => (
-			<Button key={name} flexGrow={1}>
-				<VisuallyHidden>Sign in with {name}</VisuallyHidden>
-				{icon}
-			</Button>
-		))}
-	</ButtonGroup>
-);
+export const OAuthButtonGroup = () => {
+	const navigate = useNavigate();
+
+	const handleSignIn = (provider: any) => {
+		signInWithPopup(auth, provider)
+			.then((result: { user: any }) => {
+				navigate('/home');
+			})
+			.catch((error: any) => {
+				console.error(error);
+			});
+	};
+
+	return (
+		<ButtonGroup variant="secondary" spacing="4">
+			{providers.map(({ name, icon, provider }) => (
+				<Button key={name} flexGrow={1} onClick={() => handleSignIn(provider)}>
+					<VisuallyHidden>Sign in with {name}</VisuallyHidden>
+					{icon}
+				</Button>
+			))}
+		</ButtonGroup>
+	);
+};

@@ -1,5 +1,8 @@
 import { initializeApp } from 'firebase/app';
 import {
+	GithubAuthProvider,
+	GoogleAuthProvider,
+	TwitterAuthProvider,
 	createUserWithEmailAndPassword,
 	getAuth,
 	signInWithEmailAndPassword,
@@ -24,3 +27,7 @@ export const handleLogin = (email: string, password: string) => {
 export const handleSignIn = (email: string, password: string) => {
 	return createUserWithEmailAndPassword(auth, email, password);
 };
+
+export const googleProvider = new GoogleAuthProvider();
+export const twitterProvider = new TwitterAuthProvider();
+export const githubProvider = new GithubAuthProvider();
