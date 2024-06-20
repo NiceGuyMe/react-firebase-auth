@@ -38,7 +38,7 @@ jobs:
     - name: Commit and push changes
       run: |
         git add .
-        git commit -m "Automated code formatting and build"
+        git diff --exit-code || git commit -m "Automated code formatting and build"
         git push origin main
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
