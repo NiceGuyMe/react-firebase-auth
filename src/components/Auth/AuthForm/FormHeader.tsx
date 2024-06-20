@@ -1,12 +1,14 @@
 import { Stack, Heading, Text, Link, Image } from '@chakra-ui/react';
 import Logo from '../../../assets/Logo.png';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
 interface FormHeaderProps {
 	isLogin: boolean;
 }
 
 export const FormHeader: React.FC<FormHeaderProps> = ({ isLogin }) => {
+	const navigate = useNavigate();
 	return (
 		<Stack spacing="6" align="center" justify="center">
 			<Image src={Logo} alt="My logo" width={20} rounded={50} />
@@ -20,11 +22,13 @@ export const FormHeader: React.FC<FormHeaderProps> = ({ isLogin }) => {
 				)}
 				{isLogin ? (
 					<Text color="fg.muted">
-						Don&apos;t have an account? <Link href="/signin">Sign up</Link>
+						Don&apos;t have an account?{' '}
+						<Link onClick={() => navigate('/signin')}>Sign up</Link>
 					</Text>
 				) : (
 					<Text color="fg.muted">
-						Already have an account? <Link href="/">Login</Link>
+						Already have an account?{' '}
+						<Link onClick={() => navigate('/')}>Login</Link>
 					</Text>
 				)}
 			</Stack>
