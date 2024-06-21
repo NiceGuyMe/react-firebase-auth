@@ -28,14 +28,14 @@ export const Auth: React.FC<AuthProps> = ({ isLogin }) => {
 			.then(() => {
 				navigate('/home');
 			})
-			.catch((error: FirebaseError) => console.log(error.message));
+			.catch((error: FirebaseError) => alert(error.message));
 	};
 	const createUserHandler = (values: inputProps) => {
 		handleSignIn(values.email, values.password)
 			.then(() => {
 				navigate('/');
 			})
-			.catch((error: FirebaseError) => console.log(error.message));
+			.catch((error: FirebaseError) => alert(error.message));
 	};
 
 	const triggerResetEmail = async (email: string) => {
