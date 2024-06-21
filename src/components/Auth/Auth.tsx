@@ -8,8 +8,9 @@ import FormButton from './AuthForm/FormButton';
 import { FormHeader } from './AuthForm/FormHeader';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-import { handleLogin, handleSignIn } from '../../utils/firebase';
+import { auth, handleLogin, handleSignIn } from '../../utils/firebase';
 import { FirebaseError } from 'firebase/app';
+import { sendPasswordResetEmail } from 'firebase/auth';
 
 interface AuthProps {
 	isLogin: boolean;
@@ -35,6 +36,11 @@ export const Auth: React.FC<AuthProps> = ({ isLogin }) => {
 				navigate('/');
 			})
 			.catch((error: FirebaseError) => console.log(error.message));
+	};
+
+	const triggerResetEmail = async (email: string) => {
+		await sendPasswordResetEmail(auth, email);
+		alert('Password reset email sent');
 	};
 
 	const formik = useFormik({
@@ -77,7 +83,11 @@ export const Auth: React.FC<AuthProps> = ({ isLogin }) => {
 						{isLogin && (
 							<HStack justify="space-between">
 								<Checkbox defaultChecked>Remember me</Checkbox>
-								<Button variant="text" size="sm">
+								<Button
+									variant="text"
+									size="sm"
+									onClick={() => triggerResetEmail(formik.values.email)}
+								>
 									Forgot password?
 								</Button>
 							</HStack>

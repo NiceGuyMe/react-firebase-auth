@@ -1,12 +1,11 @@
 import { Button, ButtonGroup, VisuallyHidden } from '@chakra-ui/react';
 import { signInWithPopup } from 'firebase/auth';
-import { googleProvider, githubProvider, auth } from '../../utils/firebase';
-import { GoogleIcon, GitHubIcon } from './ProviderIcons';
+import { googleProvider, auth } from '../../utils/firebase';
+import { GoogleIcon } from './ProviderIcons';
 import { useNavigate } from 'react-router-dom';
 
 const providers = [
 	{ name: 'Google', icon: <GoogleIcon />, provider: googleProvider },
-	{ name: 'GitHub', icon: <GitHubIcon />, provider: githubProvider },
 ];
 
 export const OAuthButtonGroup = () => {
